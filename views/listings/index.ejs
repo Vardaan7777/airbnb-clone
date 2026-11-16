@@ -1,12 +1,28 @@
 <% layout("/layouts/boilerplate") %>
-    <body>
+
         <h3>All Listings</h3>
-        <form method="get" action="/listings/new">
+        <!-- <form method="get" action="/listings/new">
             <button>Create new Listing</button>
-        </form>
-        <ul>
-            <% for (let listing of allListings) { %>
-                <li><a href="/listings/<%= listing._id %>"><%= listing.title %></li>
-            <% } %>
-        </ul>
-    </body>
+        </form> -->
+
+<!-- Placing all the card in a row form -->
+<!-- bootstrap feature : fitting 3 large card blocks in 1 row-->
+<div class="row row-cols-lg-3 ow row-cols-md-3 ow row-cols-sm-2">
+    <!-- cards/ icon blocks made for each lisitng including images and content-->
+    <% for (let listing of allListings) { %>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+    <div class="card col">
+        <img src="<%= listing.image.url %>" class="card-img" alt="listing_image" style="height: 20rem;">
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+            <p class="card-text fg-2">
+                <b><%= listing.title %></b> <br>
+                &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+            </p>
+        </div>
+    </div>
+    </a>
+<% } %>
+</div>
+
+
